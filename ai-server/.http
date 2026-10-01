@@ -1,0 +1,19 @@
+POST http://localhost:8000/repurpose
+Content-Type: application/json
+
+{
+  "messages": [
+    {
+      "role": "user",
+      "text": "I have launched an AI startup that helps developers build projects faster.",
+      "images": [],
+      "videos": []
+    }
+  ],
+  "settings": {
+    "tone": "Professional",
+    "audience": "Developers",
+    "language": "English",
+    "length": "Medium"
+  }
+}

@@ -1,0 +1,203 @@
+@baseUrl = http://localhost:5000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTc3MWMyNDdiMWM1NzllMmI0OGJlY2UiLCJpYXQiOjE3ODg3OTkyOTYsImV4cCI6MTc4OTQwNDA5Nn0.h2Oc4HVM3lV6KAQaju8gTbm5wsuHqb8ZYE5sDpYBWjQ
+@conversationId = YOUR_CONVERSATION_ID
+
+
+### =========================================================
+### HEALTH / ROOT
+### =========================================================
+
+### Backend root
+GET {{baseUrl}}/
+
+
+### =========================================================
+### AUTH
+### =========================================================
+
+### Register
+POST {{baseUrl}}/api/register
+Content-Type: application/json
+
+{
+  "name": "Om Navale",
+  "email": "omnavale128@gmail.com",
+  "password": "123456"
+}
+
+
+### Login
+POST {{baseUrl}}/api/login
+Content-Type: application/json
+
+{
+  "email": "omnavale128@gmail.com",
+  "password": "123456"
+}
+
+
+### =========================================================
+### CHAT
+### =========================================================
+
+### Send text message
+POST {{baseUrl}}/api/chat
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "text": "I have launched an AI startup that helps developers build projects faster.",
+  "settings": {
+    "tone": "Professional",
+    "audience": "Developers",
+    "language": "English",
+    "length": "Medium"
+  }
+}
+
+
+### =========================================================
+### CHAT - SPECIFIC PLATFORM
+### =========================================================
+
+### Generate LinkedIn content
+POST {{baseUrl}}/api/chat
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "text": "I have launched an AI startup that helps developers build projects faster. Create a LinkedIn post.",
+  "settings": {
+    "tone": "Professional",
+    "audience": "Developers and startup founders",
+    "language": "English",
+    "length": "Medium"
+  }
+}
+
+
+### Generate Twitter/X content
+POST {{baseUrl}}/api/chat
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "text": "I have launched an AI startup that helps developers build projects faster. Create a Twitter thread.",
+  "settings": {
+    "tone": "Engaging",
+    "audience": "Developers",
+    "language": "English",
+    "length": "Short"
+  }
+}
+
+### AI Product Launch
+POST {{baseUrl}}/api/chat
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "text": "Today we are launching CodePilot, an AI-powered developer assistant that helps developers understand code, generate boilerplate, find bugs and explain complex functions.",
+  "settings": {
+    "tone": "Exciting",
+    "audience": "Software Developers",
+    "language": "English",
+    "length": "Medium"
+  }
+}
+
+### =========================================================
+### CHAT - IMAGE
+### =========================================================
+
+### Send image URL
+POST {{baseUrl}}/api/chat
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "text": "Analyze this image and create a LinkedIn post about it.",
+  "images": [
+    {
+      "url": "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+    }
+  ],
+  "settings": {
+    "tone": "Professional",
+    "audience": "General Audience",
+    "language": "English",
+    "length": "Medium"
+  }
+}
+
+
+### =========================================================
+### CHAT - VIDEO
+### =========================================================
+
+### Send video URL
+POST {{baseUrl}}/api/chat
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "text": "Analyze this video and create social media content from it.",
+  "videos": [
+    {
+      "url": "https://res.cloudinary.com/demo/video/upload/dog.mp4"
+    }
+  ],
+  "settings": {
+    "tone": "Engaging",
+    "audience": "General Audience",
+    "language": "English",
+    "length": "Medium"
+  }
+}
+
+
+### =========================================================
+### CHAT - IMAGE + VIDEO
+### =========================================================
+
+### Send multimodal content
+POST {{baseUrl}}/api/chat
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "text": "Analyze the provided content and create a complete social media campaign.",
+  "images": [
+    {
+      "url": "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+    }
+  ],
+  "videos": [
+    {
+      "url": "https://res.cloudinary.com/demo/video/upload/dog.mp4"
+    }
+  ],
+  "settings": {
+    "tone": "Creative",
+    "audience": "Social media users",
+    "language": "English",
+    "length": "Long"
+  }
+}
+
+### ========================================
+### GET ALL CONVERSATIONS
+### ========================================
+
+GET http://localhost:5000/api/conversations
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+### ========================================
+### GET SPECIFIC CONVERSATION
+### ========================================
+
+GET http://localhost:5000/api/conversations/6a7725e0fa66a6e2e6344842
+Authorization: Bearer {{token}}
+Content-Type: application/json
