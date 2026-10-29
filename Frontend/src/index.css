@@ -1,0 +1,206 @@
+/* Import Tailwind CSS v4 */
+@import "tailwindcss";
+
+/* ===========================
+   Custom Theme Variables
+   =========================== */
+
+/*
+  We define CSS custom properties (variables) for our color palette.
+  Tailwind's dark: variant handles most styling, but these variables
+  give us extra control for gradients and special effects.
+*/
+
+:root {
+  /* Light mode colors */
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-sidebar: #f1f3f5;
+  --bg-chat-ai: #e9ecef;
+  --bg-chat-user: #4c6ef5;
+  --bg-input: #ffffff;
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --text-muted: #868e96;
+  --border-color: #dee2e6;
+  --accent-color: #4c6ef5;
+  --accent-hover: #364fc7;
+  --hover-bg: #e9ecef;
+}
+
+.dark {
+  /* Dark mode colors */
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --bg-sidebar: #141414;
+  --bg-chat-ai: #1e1e1e;
+  --bg-chat-user: #4c6ef5;
+  --bg-input: #1e1e1e;
+  --text-primary: #e9ecef;
+  --text-secondary: #adb5bd;
+  --text-muted: #6c757d;
+  --border-color: #2d2d2d;
+  --accent-color: #4c6ef5;
+  --accent-hover: #5c7cfa;
+  --hover-bg: #2a2a2a;
+}
+
+/* ===========================
+   Global Styles
+   =========================== */
+
+* {
+  /* margin: 0; */
+  /* padding: 0; */
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow: hidden;
+  /* Prevent body scroll — the chat area scrolls instead */
+}
+
+/* ===========================
+   Custom Scrollbar
+   =========================== */
+
+/* Works in Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--text-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-secondary);
+}
+
+/* ===========================
+   Animations
+   =========================== */
+
+/* Fade-in animation for messages */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* Slide-down animation for platform fields */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slideDown 0.35s ease-out forwards;
+  overflow: hidden;
+}
+
+/* Subtle pulse for the AI typing indicator */
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 1.5s ease-in-out infinite;
+}
+
+/* Gentle glow effect for active elements */
+@keyframes glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(76, 110, 245, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 15px rgba(76, 110, 245, 0.5);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* ===========================
+   Utility Classes
+   =========================== */
+
+/* Glass morphism effect */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Smooth transition for all interactive elements */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Floating hover lift effect */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.2), 0 4px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.6), 0 4px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* Active press effect with a bouncy satisfying feel */
+.press-effect:active {
+  transform: scale(0.94) translateY(2px) !important;
+  box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.2), 0 1px 3px -1px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s ease;
+}
+
+.dark .press-effect:active {
+  box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.5), 0 1px 3px -1px rgba(0, 0, 0, 0.4) !important;
+}
